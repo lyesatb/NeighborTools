@@ -182,6 +182,7 @@
         id: 1, category: "bricolage",
         name: "Visseuse Bosch sans fil",
         icon: "fa-screwdriver-wrench",
+        img: "images/tool_visseuse.png",
         description: "Visseuse 18V avec 2 batteries et un chargeur. Parfaite pour vissage, perçage léger.",
         price: 5, distance: 200,
         owner: "Karim B.", rating: 4.8, reviews: 14,
@@ -191,6 +192,7 @@
         id: 2, category: "nettoyage",
         name: "Kärcher K5 haute pression",
         icon: "fa-water",
+        img: "images/tool_karcher.png",
         description: "Nettoyeur HP 145 bar idéal pour terrasses, voitures, façades. Avec lance rotative.",
         price: 12, distance: 350,
         owner: "Sophie M.", rating: 4.9, reviews: 22,
@@ -200,6 +202,7 @@
         id: 3, category: "bricolage",
         name: "Perceuse à colonne",
         icon: "fa-bolt",
+        img: "images/tool_perceuse_colonne.png",
         description: "Perceuse à colonne 500W, profondeur de perçage réglable. Idéale pour le bois et le métal.",
         price: 8, distance: 480,
         owner: "Marc D.", rating: 4.6, reviews: 8,
@@ -209,6 +212,7 @@
         id: 4, category: "jardinage",
         name: "Tondeuse à gazon électrique",
         icon: "fa-leaf",
+        img: "images/tool_tondeuse.png",
         description: "Tondeuse filaire 1600W, largeur de coupe 37 cm. Bac collecteur 40 L inclus.",
         price: 10, distance: 650,
         owner: "Fatou N.", rating: 4.7, reviews: 11,
@@ -218,6 +222,7 @@
         id: 5, category: "nettoyage",
         name: "Nettoyeur vapeur Polti",
         icon: "fa-wind",
+        img: "images/tool_nettoyeur_vapeur.png",
         description: "Nettoyeur vapeur 3 bars, désinfecte sans produits chimiques. Joints, carrelage, sol.",
         price: 7, distance: 820,
         owner: "Alix T.", rating: 4.5, reviews: 6,
@@ -227,6 +232,7 @@
         id: 6, category: "bricolage",
         name: "Scie sauteuse Makita",
         icon: "fa-scissors",
+        img: "images/tool_scie_sauteuse.png",
         description: "Scie sauteuse pendulaire 4 vitesses, coupe droite et biseaux jusqu'à 45°. 3 lames incluses.",
         price: 6, distance: 1100,
         owner: "Pedro S.", rating: 4.4, reviews: 5,
@@ -236,6 +242,7 @@
         id: 7, category: "jardinage",
         name: "Taille-haie à batterie",
         icon: "fa-seedling",
+        img: "images/tool_taille_haie.png",
         description: "Taille-haie 20V sans fil, lame 50 cm, coupe jusqu'à 18 mm. Léger et maniable.",
         price: 4, distance: 1250,
         owner: "Nathalie R.", rating: 4.9, reviews: 19,
@@ -245,6 +252,7 @@
         id: 8, category: "nettoyage",
         name: "Aspirateur eau & poussière",
         icon: "fa-filter",
+        img: "images/tool_aspirateur.png",
         description: "Aspirateur multifonction 30L. Aspire liquides, sciure, gravats. Incontournable en chantier.",
         price: 9, distance: 1500,
         owner: "Jean-Luc V.", rating: 4.3, reviews: 7,
@@ -254,6 +262,7 @@
         id: 9, category: "bricolage",
         name: "Ponceuse orbitale Ryobi",
         icon: "fa-circle-notch",
+        img: "images/tool_ponceuse.png",
         description: "Ponceuse 300W, bonne finition sur bois et métal. 5 feuilles abrasives fournies.",
         price: 5, distance: 1900,
         owner: "Clara H.", rating: 4.6, reviews: 9,
@@ -287,9 +296,9 @@
       return `
       <div class="card-hover bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col shadow-sm" data-id="${p.id}">
         <!-- Card image area -->
-        <div class="bg-gradient-to-br from-emerald-100 to-slate-100 h-36 flex items-center justify-center relative">
-          <i class="fa-solid ${p.icon} text-5xl text-emerald-500/60"></i>
-          ${p.tag ? `<span class="absolute top-3 left-3 text-[11px] bg-white/90 backdrop-blur border border-slate-200 text-slate-600 px-2 py-0.5 rounded-full">${p.tag}</span>` : ''}
+        <div class="bg-slate-50 h-44 flex items-center justify-center relative overflow-hidden border-b border-slate-100">
+          <img src="${p.img}" alt="${p.name}" class="h-full w-full object-contain p-4" loading="lazy" />
+          ${p.tag ? `<span class="absolute top-3 left-3 text-[11px] bg-white/95 backdrop-blur border border-slate-200 text-slate-600 px-2 py-0.5 rounded-full shadow-sm">${p.tag}</span>` : ''}
           <span class="absolute top-3 right-3 text-[11px] badge-distance px-2 py-0.5 rounded-full text-emerald-700 font-medium flex items-center gap-1">
             <i class="fa-solid fa-location-dot text-[9px]"></i>${distanceLabel(p.distance)}
           </span>
