@@ -1,175 +1,290 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeighborTools • Un voisin. Un outil. Zéro achat.</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeighborTools • Emprunte les outils de ton quartier</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    .hero-bg { background: linear-gradient(135deg, #10b981 0%, #065f46 100%); }
-    .phone { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+    .hero-bg { background: radial-gradient(circle at top left, #34d399, #047857 55%, #022c22 100%); }
+    .phone { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.35); }
   </style>
 </head>
-<body class="font-sans">
+<body class="font-sans bg-slate-950 text-slate-50">
 
   <!-- NAVBAR -->
-  <nav class="bg-white border-b sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <span class="text-3xl">📍</span>
-        <h1 class="text-2xl font-bold text-emerald-600">NEIGHBORTOOLS</h1>
+  <nav class="bg-slate-950/80 backdrop-blur border-b border-slate-800 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">📍</span>
+        <span class="font-bold text-lg tracking-[0.2em] text-emerald-400">NEIGHBORTOOLS</span>
       </div>
-      <div class="hidden md:flex gap-8 text-gray-700">
-        <a href="#pitch" class="hover:text-emerald-600">Pitch</a>
-        <a href="#etude" class="hover:text-emerald-600">Étude marché</a>
-        <a href="#empathie" class="hover:text-emerald-600">Carte d’empathie</a>
-        <a href="#concurrents" class="hover:text-emerald-600">Concurrents</a>
-        <a href="#equipe" class="hover:text-emerald-600">Équipe</a>
+      <div class="hidden md:flex gap-8 text-sm text-slate-200">
+        <a href="#features" class="hover:text-emerald-400">Fonctionnalités</a>
+        <a href="#how" class="hover:text-emerald-400">Comment ça marche</a>
+        <a href="#screens" class="hover:text-emerald-400">Aperçu</a>
+        <a href="#faq" class="hover:text-emerald-400">FAQ</a>
       </div>
-      <a href="#demo" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-2xl font-medium flex items-center gap-2">
-        <i class="fa-solid fa-download"></i>
-        Télécharger l’app (démo)
+      <a href="#download" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        Accéder à la démo
       </a>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="hero-bg text-white py-20">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+  <header class="hero-bg">
+    <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
-          Un voisin.<br>Un outil.<br><span class="text-emerald-200">Zéro achat.</span>
-        </h2>
-        <p class="text-xl mb-8 text-emerald-100">
-          Ton garage devient aussi grand que ton quartier.<br>
-          Emprunte un Kärcher, une visseuse ou un nettoyeur vapeur en 3 clics.
+        <p class="uppercase text-xs tracking-[0.3em] text-emerald-200 mb-4">Économie • Écologie • Proximité</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+          Ton quartier devient<br>
+          <span class="text-emerald-200">le plus grand garage du monde.</span>
+        </h1>
+        <p class="text-slate-100/80 text-base md:text-lg mb-6">
+          NeighborTools te permet d’emprunter les outils de tes voisins en quelques clics :
+          nettoyeur haute pression, visseuse, perceuse, nettoyeur vapeur… sans achat, sans stockage.
         </p>
-        <div class="flex gap-4">
-          <a href="#demo" class="bg-white text-emerald-700 px-8 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 hover:scale-105 transition">
+        <ul class="space-y-2 text-sm text-slate-100/80 mb-6">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Zéro achat inutile pour un usage ponctuel</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Proximité : des voisins à moins de 500 m</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Système de confiance et avis entre voisins</li>
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <a href="#download" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
             <i class="fa-solid fa-qrcode"></i>
-            Voir la démo
+            Ouvrir la démo web
           </a>
-          <a href="#" class="border-2 border-white px-8 py-4 rounded-3xl font-semibold text-lg hover:bg-white hover:text-emerald-700 transition">
-            En savoir plus
+          <a href="#how" class="border border-emerald-400/60 text-emerald-100 px-6 py-3 rounded-full text-sm font-semibold hover:bg-emerald-400/10">
+            Voir comment ça marche
           </a>
         </div>
-        <p class="mt-8 text-emerald-200 text-sm">Déjà validé par 17 personnes • 76,5 % prêts à louer</p>
+        <p class="mt-4 text-xs text-emerald-100/80">
+          Prototype PRS MIA 26.2 • Testé auprès de premiers utilisateurs.
+        </p>
       </div>
-
-      <!-- Maquette de l'application -->
       <div class="flex justify-center">
-        <img src="maquette.png" alt="Maquette NeighborTools" class="phone w-full max-w-[320px] rounded-3xl">
+        <div class="phone bg-slate-900 rounded-[2.5rem] p-4 w-full max-w-xs border border-slate-700 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-slate-700 rounded-full"></div>
+          <div class="bg-slate-800 rounded-3xl h-full p-4 flex flex-col gap-3">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span>NeighborTools</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full">Bêta</span>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-500/20 to-slate-900 rounded-2xl p-4 text-xs text-slate-100">
+              <p class="font-semibold mb-1">Trouve un outil près de chez toi</p>
+              <p class="text-[11px] text-slate-200/80 mb-3">Entre ton adresse et découvre les outils disponibles dans un rayon de 500 m.</p>
+              <div class="bg-slate-900/70 rounded-xl p-2 flex items-center gap-2">
+                <i class="fa-solid fa-location-dot text-emerald-400"></i>
+                <span class="text-[11px] text-slate-200/80">Clichy-sous-Bois • 8 outils disponibles</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="bg-slate-900 rounded-xl p-2">
+                <p class="font-semibold mb-1 flex items-center gap-1">
+                  <i class="fa-solid fa-screwdriver-wrench text-emerald-400"></i> Visseuse
+                </p>
+                <p class="text-slate-300/80 mb-1">À 200 m • 5 €/jour</p>
+                <p class="text-[10px] text-emerald-300">Note : 4,8 ★</p>
+              </div>
+              <div class="bg-slate-900 rounded-xl p-2">
+                <p class="font-semibold mb-1 flex items-center gap-1">
+                  <i class="fa-solid fa-water text-emerald-400"></i> Kärcher
+                </p>
+                <p class="text-slate-300/80 mb-1">À 350 m • 12 €/jour</p>
+                <p class="text-[10px] text-emerald-300">Assurance incluse</p>
+              </div>
+            </div>
+            <button class="mt-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold py-2 rounded-xl">
+              Se connecter / Créer un compte
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ELEVATOR PITCH -->
-  <section id="pitch" class="py-16 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-10">Elevator Pitch</h2>
-      <div class="bg-white p-10 rounded-3xl shadow-xl">
-        <p class="text-xl leading-relaxed text-gray-700">
-          Et si votre garage était aussi grand que votre quartier ?<br><br>
-          Pourquoi remplir vos placards — et vider votre portefeuille — pour un objet qui ne sert que quelques jours dans l’année ?<br><br>
-          <strong>NeighborTools</strong> transforme votre voisinage en un espace de partage simple et pratique.<br>
-          Besoin d’un nettoyeur vapeur ? D’une visseuse ? Empruntez-le à un voisin en quelques clics.
+  <!-- FEATURES -->
+  <section id="features" class="py-16 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8">Ce que permet l’application NeighborTools</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+              <i class="fa-solid fa-magnifying-glass-location"></i>
+            </div>
+            <p class="font-semibold">Trouver un outil près de chez soi</p>
+          </div>
+          <p class="text-slate-300/90">
+            Recherche par adresse ou géolocalisation, filtre par type d’outil, prix, distance et disponibilité.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <p class="font-semibold">Réserver en quelques clics</p>
+          </div>
+          <p class="text-slate-300/90">
+            Demande de réservation, validation par le voisin, messagerie intégrée pour fixer l’heure et le lieu d’échange.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <p class="font-semibold">Confiance & sécurité</p>
+          </div>
+          <p class="text-slate-300/90">
+            Profils vérifiés, système d’avis, historique des prêts, et possibilité d’intégrer une assurance casse/vol.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="py-16 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8">Comment ça marche ?</h2>
+      <div class="grid md:grid-cols-4 gap-6 text-sm">
+        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
+          <p class="text-xs text-slate-400 mb-1">Étape 1</p>
+          <p class="font-semibold mb-2">Créer ton compte</p>
+          <p class="text-slate-300/90">Inscris-toi avec ton email et ton adresse. Tu peux aussi ajouter les outils que tu possèdes.</p>
+        </div>
+        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
+          <p class="text-xs text-slate-400 mb-1">Étape 2</p>
+          <p class="font-semibold mb-2">Chercher un outil</p>
+          <p class="text-slate-300/90">Choisis le type d’outil, la date et la distance maximale. L’app te propose les voisins disponibles.</p>
+        </div>
+        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
+          <p class="text-xs text-slate-400 mb-1">Étape 3</p>
+          <p class="font-semibold mb-2">Réserver & échanger</p>
+          <p class="text-slate-300/90">Tu envoies une demande, le voisin accepte, vous fixez un point de rencontre sécurisé.</p>
+        </div>
+        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
+          <p class="text-xs text-slate-400 mb-1">Étape 4</p>
+          <p class="font-semibold mb-2">Noter & recommencer</p>
+          <p class="text-slate-300/90">Après le prêt, chacun laisse un avis. Plus tu prêtes et empruntes, plus ta confiance augmente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENS / APERÇU -->
+  <section id="screens" class="py-16 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between mb  -8">
+        <h2 class="text-2xl md:text-3xl font-bold">Aperçu de l’interface</h2>
+        <p class="text-xs text-slate-400 hidden md:block">Prototype non définitif – maquettes en cours d’itération.</p>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+          <p class="font-semibold mb-2">Accueil</p>
+          <p class="text-slate-300/90 mb-3">Carte du quartier, liste des outils disponibles, filtres rapides.</p>
+          <div class="h-40 rounded-xl bg-gradient-to-br from-emerald-500/10 to-slate-900 flex items-center justify-center text-slate-400 text-xs">
+            Capture écran “Accueil”
+          </div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+          <p class="font-semibold mb-2">Fiche outil</p>
+          <p class="text-slate-300/90 mb-3">Photos, description, prix, distance, avis, bouton “Demander cet outil”.</p>
+          <div class="h-40 rounded-xl bg-gradient-to-br from-emerald-500/10 to-slate-900 flex items-center justify-center text-slate-400 text-xs">
+            Capture écran “Fiche outil”
+          </div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+          <p class="font-semibold mb-2">Profil & historique</p>
+          <p class="text-slate-300/90 mb-3">Outils prêtés, empruntés, notes reçues, niveau de confiance.</p>
+          <div class="h-40 rounded-xl bg-gradient-to-br from-emerald-500/10 to-slate-900 flex items-center justify-center text-slate-400 text-xs">
+            Capture écran “Profil”
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD / DEMO -->
+  <section id="download" class="py-16 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Tester la démo NeighborTools</h2>
+        <p class="text-slate-300/90 text-sm mb-4">
+          Cette version est un prototype web statique destiné à présenter le concept, les écrans clés et le parcours utilisateur.
+          Elle peut être utilisée en support de présentation, pour des tests utilisateurs ou dans un dossier de projet.
         </p>
-        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Économies</strong> immédiates</div>
-          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Pratique</strong> & rapide</div>
-          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Sécurisé</strong> & assuré</div>
-          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Écologique</strong></div>
+        <ul class="text-sm text-slate-200 space-y-2 mb-6">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-400"></i> Démo cliquable (parcours simplifié)</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-400"></i> Compatible desktop & mobile</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-400"></i> Facile à héberger (Vercel, Netlify, GitHub Pages…)</li>
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-play"></i>
+            Lancer la démo
+          </a>
+          <a href="#" class="border border-slate-600 text-slate-100 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+            <i class="fa-brands fa-github"></i>
+            Voir le code source
+          </a>
+        </div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-sm">
+        <p class="font-semibold mb-3">Techniquement, c’est quoi ?</p>
+        <ul class="space-y-2 text-slate-300/90">
+          <li><span class="font-semibold text-emerald-300">•</span> Site statique HTML + TailwindCSS</li>
+          <li><span class="font-semibold text-emerald-300">•</span> Facilement intégrable dans un futur front React / Next.js</li>
+          <li><span class="font-semibold text-emerald-300">•</span> Structure pensée pour une future API (auth, recherche, réservation)</li>
+          <li><span class="font-semibold text-emerald-300">•</span> Idéal pour démontrer l’UX avant de développer le back-end</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8">Questions fréquentes</h2>
+      <div class="grid md:grid-cols-2 gap-6 text-sm">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <p class="font-semibold mb-2">Est-ce une vraie application fonctionnelle ?</p>
+          <p class="text-slate-300/90">
+            Cette version est un prototype statique. Elle sert à présenter le concept, le design et le parcours utilisateur.
+            Une version complète nécessitera un back-end (API, base de données, authentification, paiements, etc.).
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <p class="font-semibold mb-2">Comment l’héberger ?</p>
+          <p class="text-slate-300/90">
+            Le site peut être déployé très facilement sur Vercel, Netlify, GitHub Pages ou tout hébergeur statique.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <p class="font-semibold mb-2">Peut-on l’utiliser dans un dossier de projet / portfolio ?</p>
+          <p class="text-slate-300/90">
+            Oui, il est conçu pour ça : démontrer une idée claire, un parcours utilisateur cohérent et une vision produit.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <p class="font-semibold mb-2">Quelles sont les prochaines étapes possibles ?</p>
+          <p class="text-slate-300/90">
+            Connexion à une API, gestion des comptes, géolocalisation réelle, paiement sécurisé, assurance intégrée, scoring de confiance, etc.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CARTE D'EMPATHIE -->
-  <section id="empathie" class="py-16 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-10">Carte de l’empathie</h2>
-      <div class="bg-gradient-to-br from-pink-100 via-yellow-100 to-cyan-100 p-8 rounded-3xl shadow-inner text-center">
-        <p class="italic text-xl mb-6">"J’en ai marre d’acheter des outils que j’utilise 2 fois par an…"</p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-left text-sm">
-          <div><strong>Ce qu’il pense :</strong> “C’est du gaspillage…”</div>
-          <div><strong>Ce qu’il ressent :</strong> Frustration + peur de la casse</div>
-          <div><strong>Ce qu’il dit :</strong> “Y a-t-il un moyen simple et pas cher ?”</div>
-          <div><strong>Ce qu’il fait :</strong> Va chez Leroy Merlin ou sur Leboncoin</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ÉTUDE DE MARCHÉ -->
-  <section id="etude" class="py-16 bg-emerald-50">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12">Étude de marché (17 réponses)</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-3xl shadow">
-          <p class="text-emerald-600 font-semibold">72 % utilisent du matériel spécialisé moins d’1 fois par mois</p>
-        </div>
-        <div class="bg-white p-8 rounded-3xl shadow">
-          <p class="text-emerald-600 font-semibold">76,5 % veulent surtout un Kärcher ou une visseuse</p>
-        </div>
-        <div class="bg-white p-8 rounded-3xl shadow">
-          <p class="text-emerald-600 font-semibold">76,5 % sont prêts à louer via une plateforme sécurisée</p>
-        </div>
-        <div class="bg-white p-8 rounded-3xl shadow">
-          <p class="text-emerald-600 font-semibold">88,2 % rassurés par une assurance casse/vol incluse</p>
-        </div>
-        <div class="bg-white p-8 rounded-3xl shadow">
-          <p class="text-emerald-600 font-semibold">70,6 % intéressés par un abonnement Premium</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONCURRENTS -->
-  <section id="concurrents" class="py-16 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12">Nous vs Concurrents</h2>
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="bg-emerald-700 text-white">
-            <th class="p-4">Plateforme</th>
-            <th class="p-4">Distance</th>
-            <th class="p-4">Prix/jour</th>
-            <th class="p-4">Assurance</th>
-            <th class="p-4">Avantage NeighborTools</th>
-          </tr>
-        </thead>
-        <tbody class="text-sm">
-          <tr class="border-b"><td class="p-4 font-bold">NeighborTools</td><td class="p-4">500 m</td><td class="p-4">10-15 €</td><td class="p-4 text-emerald-600">Incluse</td><td class="p-4 text-emerald-600">✅ Proximité + Particuliers</td></tr>
-          <tr class="border-b"><td class="p-4">Leroy Merlin</td><td class="p-4">6-10 km</td><td class="p-4">30-70 €</td><td class="p-4">Non</td><td class="p-4">Trop loin + horaires</td></tr>
-          <tr class="border-b"><td class="p-4">Toolzy</td><td class="p-4">25 km</td><td class="p-4">15-40 €</td><td class="p-4">Non</td><td class="p-4">Outils pro seulement</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ÉQUIPE -->
-  <section id="equipe" class="py-16 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-10">L’équipe Groupe PRS MIA 26.2</h2>
-      <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-lg">
-        <div>COODIEN Govindarajen</div>
-        <div>AIT TAYEB Lyes</div>
-        <div>DZIRI Rayane</div>
-        <div>LEKOJARA Abdelrafik</div>
-        <div>HAMMA Sofiane</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER / CTA -->
-  <footer class="bg-emerald-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <p class="text-2xl mb-6">Prêt à transformer ton quartier ?</p>
-      <a href="#" class="inline-block bg-white text-emerald-700 px-10 py-5 rounded-3xl text-xl font-semibold hover:scale-110 transition">
-        Lancer l’app (démo) →
-      </a>
-      <p class="mt-12 text-emerald-300 text-sm">NeighborTools © 2026 • Un projet PRS MIA 26.2</p>
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <p>NeighborTools © 2026 • Prototype d’application de partage d’outils entre voisins.</p>
+      <p>Groupe PRS MIA 26.2 • AIT TAYEB Lyes & co.</p>
     </div>
   </footer>
 
