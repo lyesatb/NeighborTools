@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajouter une annonce • NeighborTools</title>
+  <meta name="description"
+    content="Publiez votre outil sur NeighborTools et gagnez de l'argent en le louant à vos voisins." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    .hero-bg {
+      background: radial-gradient(circle at top left, #34d399, #047857 55%, #022c22 100%);
+    }
+
+    .form-field {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      color: #1e293b;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-field:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+    }
+
+    .form-field::placeholder {
+      color: #94a3b8;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .category-card {
+      cursor: pointer;
+      border: 2px solid #e2e8f0;
+      border-radius: 1rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      background: #f8fafc;
+    }
+
+    .category-card:hover {
+      border-color: rgba(16, 185, 129, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .category-card.selected {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .category-card i {
+      font-size: 1.4rem;
+      color: #059669;
+    }
+
+    .category-card span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .drop-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .drop-zone:hover,
+    .drop-zone.dragover {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.04);
+    }
+
+    .price-preview {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.08), rgba(4, 120, 87, 0.05));
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .step-indicator {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #e2e8f0;
+      color: #94a3b8;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .step-indicator.active {
+      background: #10b981;
+      color: #022c22;
+    }
+
+    .step-indicator.done {
+      background: rgba(16, 185, 129, 0.15);
+      color: #059669;
+    }
+
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: #e2e8f0;
+    }
+
+    .step-line.done {
+      background: rgba(16, 185, 129, 0.4);
+    }
+
+    .submit-btn {
+      background: #10b981;
+      color: #022c22;
+      border-radius: 9999px;
+      font-weight: 700;
+      padding: 0.875rem 2rem;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.1s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .submit-btn:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-section {
+      animation: slideIn 0.3s ease;
+    }
+
+    /* success overlay */
+    #success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #success-overlay.show {
+      display: flex;
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-white text-slate-800">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <span class="text-2xl">📍</span>
+        <span class="font-bold text-lg tracking-[0.2em] text-emerald-400">NEIGHBORTOOLS</span>
+      </a>
+      <div class="hidden md:flex gap-8 text-sm text-slate-600">
+        <a href="products.html" class="hover:text-emerald-600">Louer un produit</a>
+        <a href="add-product.html" class="text-emerald-600 font-semibold">Ajouter une annonce</a>
+      </div>
+      <a href="products.html"
+        class="border border-emerald-400/60 text-emerald-100 px-4 py-2 rounded-full text-sm font-semibold hover:bg-emerald-400/10 transition-colors flex items-center gap-2">
+        <i class="fa-solid fa-qrcode"></i>
+        Voir les annonces
+      </a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="hero-bg py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="uppercase text-xs tracking-[0.3em] text-emerald-200 mb-3">Partager • Gagner • Contribuer</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold leading-tight mb-3 text-white">
+        Publiez votre outil, <span class="text-emerald-200">gagnez en le partageant</span>
+      </h1>
+      <p class="text-slate-100/80 text-sm md:text-base max-w-xl">
+        En quelques étapes, votre outil inutilisé devient une source de revenus pour votre voisinage. Commission de
+        seulement 5 %.
+      </p>
+    </div>
+  </header>
+
+  <div class="max-w-3xl mx-auto px-4 py-10">
+
+    <!-- STEP INDICATORS -->
+    <div class="flex items-center gap-2 mb-10" id="step-indicators">
+      <div class="step-indicator active" id="si-1">1</div>
+      <div class="step-line" id="sl-1"></div>
+      <div class="step-indicator" id="si-2">2</div>
+      <div class="step-line" id="sl-2"></div>
+      <div class="step-indicator" id="si-3">3</div>
+    </div>
+    <div class="flex justify-between text-[11px] text-slate-500 -mt-8 mb-10">
+      <span class="text-emerald-600 font-semibold">Catégorie & infos</span>
+      <span>Photo & description</span>
+      <span>Prix & disponibilité</span>
+    </div>
+
+    <form id="main-form" onsubmit="submitForm(event)" novalidate>
+
+      <!-- ═══ STEP 1 ═══ -->
+      <div id="step-1" class="step-section">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+          <h2 class="font-bold text-base mb-1 flex items-center gap-2 text-slate-800">
+            <i class="fa-solid fa-tag text-emerald-500 text-sm"></i>
+            Informations générales
+          </h2>
+          <p class="text-xs text-slate-500 mb-5">Nommez votre outil et choisissez la bonne catégorie.</p>
+
+          <!-- Name -->
+          <div class="mb-5">
+            <label for="tool-name" class="form-label">Nom de l'outil *</label>
+            <input id="tool-name" type="text" required maxlength="80" placeholder="Ex : Visseuse Bosch 18V, Kärcher K3…"
+              class="form-field w-full px-4 py-3 text-sm" />
+            <p class="text-[11px] text-slate-400 mt-1">80 caractères max.</p>
+          </div>
+
+          <!-- Category -->
+          <div class="mb-1">
+            <label class="form-label">Catégorie *</label>
+            <div class="grid grid-cols-3 sm:grid-cols-5 gap-3 mt-1" id="cat-grid">
+              <div class="category-card selected" data-cat="bricolage" onclick="selectCat(this)">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>Bricolage</span>
+              </div>
+              <div class="category-card" data-cat="jardinage" onclick="selectCat(this)">
+                <i class="fa-solid fa-leaf"></i>
+                <span>Jardinage</span>
+              </div>
+              <div class="category-card" data-cat="nettoyage" onclick="selectCat(this)">
+                <i class="fa-solid fa-water"></i>
+                <span>Nettoyage</span>
+              </div>
+              <div class="category-card" data-cat="cuisine" onclick="selectCat(this)">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Cuisine</span>
+              </div>
+              <div class="category-card" data-cat="autre" onclick="selectCat(this)">
+                <i class="fa-solid fa-box"></i>
+                <span>Autre</span>
+              </div>
+            </div>
+            <input type="hidden" id="selected-cat" value="bricolage" />
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+          <h2 class="font-bold text-base mb-1 flex items-center gap-2 text-slate-800">
+            <i class="fa-solid fa-location-dot text-emerald-500 text-sm"></i>
+            Votre adresse de dépôt
+          </h2>
+          <p class="text-xs text-slate-500 mb-5">L'adresse exacte ne sera jamais partagée. Seule la distance
+            approximative sera affichée.</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="street" class="form-label">Rue *</label>
+              <input id="street" type="text" required placeholder="12 rue des Lilas"
+                class="form-field w-full px-4 py-3 text-sm" />
+            </div>
+            <div>
+              <label for="city" class="form-label">Ville *</label>
+              <input id="city" type="text" required placeholder="Clichy-sous-Bois"
+                class="form-field w-full px-4 py-3 text-sm" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <button type="button" onclick="goStep(2)" class="submit-btn">
+            Continuer <i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ STEP 2 ═══ -->
+      <div id="step-2" class="step-section hidden">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+          <h2 class="font-bold text-base mb-1 flex items-center gap-2 text-slate-800">
+            <i class="fa-solid fa-image text-emerald-500 text-sm"></i>
+            Photo de l'outil
+          </h2>
+          <p class="text-xs text-slate-500 mb-5">Une bonne photo augmente vos chances de location de 3×.</p>
+
+          <div class="drop-zone" id="drop-zone" onclick="document.getElementById('photo-input').click()"
+            ondragover="event.preventDefault(); this.classList.add('dragover')"
+            ondragleave="this.classList.remove('dragover')" ondrop="handleDrop(event)">
+            <div id="drop-default">
+              <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-400 mb-3"></i>
+              <p class="text-sm font-semibold text-slate-600">Glissez une photo ou cliquez pour parcourir</p>
+              <p class="text-xs text-slate-400 mt-1">JPG, PNG, WEBP — 10 Mo max.</p>
+            </div>
+            <img id="photo-preview" class="hidden mx-auto max-h-48 rounded-xl object-cover" alt="Prévisualisation" />
+          </div>
+          <input id="photo-input" type="file" accept="image/*" class="hidden" onchange="previewPhoto(this)" />
+          <p class="text-[11px] text-slate-600 mt-2">La photo est optionnelle mais recommandée.</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+          <h2 class="font-bold text-base mb-1 flex items-center gap-2 text-slate-800">
+            <i class="fa-solid fa-align-left text-emerald-500 text-sm"></i>
+            Description
+          </h2>
+          <p class="text-xs text-slate-500 mb-5">Décrivez l'état, les accessoires inclus, les conditions d'utilisation.
+          </p>
+
+          <div class="mb-5">
+            <label for="description" class="form-label">Description *</label>
+            <textarea id="description" rows="5" required maxlength="500"
+              placeholder="Ex : Visseuse en parfait état, fournie avec 2 batteries + chargeur. Couple max 65 Nm. Idéale pour vis jusqu'à 8 mm dans le bois. Pas d'utilisation pour le béton."
+              class="form-field w-full px-4 py-3 text-sm resize-none"></textarea>
+            <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+              <span id="desc-count">0 / 500</span>
+              <span>Soyez précis — cela rassure le locataire.</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="condition" class="form-label">État de l'outil *</label>
+            <select id="condition" class="form-field w-full px-4 py-3 text-sm appearance-none bg-white">
+              <option value="">— Choisissez un état —</option>
+              <option value="new">Neuf (jamais utilisé)</option>
+              <option value="very-good">Très bon état</option>
+              <option value="good">Bon état (légères traces d'usure)</option>
+              <option value="fair">État correct (usure visible mais fonctionnel)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <button type="button" onclick="goStep(1)"
+            class="border border-slate-300 text-slate-600 px-6 py-3 rounded-full text-sm font-semibold hover:bg-slate-100 transition-colors">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Retour
+          </button>
+          <button type="button" onclick="goStep(3)" class="submit-btn">
+            Continuer <i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ STEP 3 ═══ -->
+      <div id="step-3" class="step-section hidden">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+          <h2 class="font-bold text-base mb-1 flex items-center gap-2 text-slate-800">
+            <i class="fa-solid fa-euro-sign text-emerald-500 text-sm"></i>
+            Prix de location
+          </h2>
+          <p class="text-xs text-slate-500 mb-5">Définissez votre tarif journalier. NeighborTools prend <strong
+              class="text-emerald-600">5 % de commission</strong> seulement.</p>
+
+          <div class="mb-5">
+            <label for="price" class="form-label">Prix par jour (€) *</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-600 font-bold">€</span>
+              <input id="price" type="number" min="1" max="200" step="0.5" required placeholder="0"
+                class="form-field w-full pl-8 pr-4 py-3 text-sm" oninput="updatePricePreview()" />
+            </div>
+          </div>
+
+          <!-- Price breakdown preview -->
+          <div class="price-preview mb-5" id="price-preview" style="display:none">
+            <p class="text-xs font-semibold text-emerald-600 mb-2 uppercase tracking-widest">Aperçu de vos revenus</p>
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-600">Prix affiché pour le locataire</span>
+                <span class="text-slate-600 font-semibold" id="pp-tenant">—</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-600">Commission NeighborTools (5 %)</span>
+                <span class="text-red-400" id="pp-commission">—</span>
+              </div>
+              <div class="flex justify-between text-sm font-bold border-t border-emerald-500/20 pt-2 mt-2">
+                <span class="text-emerald-600">Vous recevez par jour</span>
+                <span class="text-emerald-600 text-base" id="pp-receive">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caution deposit -->
+          <div>
+            <label for="deposit" class="form-label">Caution (€) <span class="text-slate-600 normal-case">—
+                optionnelle</span></label>
+            <input id="deposit" type="number" min="0" max="500" step="5" placeholder="Ex : 50"
+              class="form-field w-full px-4 py-3 text-sm" />
+            <p class="text-[11px] text-slate-600 mt-1">La caution est restituée après la location si l'outil est rendu
+              en bon état.</p>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+          <h2 class="font-bold text-base mb-1 flex items-center gap-2 text-slate-800">
+            <i class="fa-solid fa-calendar text-emerald-500 text-sm"></i>
+            Disponibilité
+          </h2>
+          <p class="text-xs text-slate-500 mb-5">Quand votre outil est-il disponible à la location ?</p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mb-5">
+            <div>
+              <label for="available-from" class="form-label">Disponible à partir du *</label>
+              <input id="available-from" type="date" required class="form-field w-full px-4 py-3 text-sm" />
+            </div>
+            <div>
+              <label for="available-to" class="form-label">Jusqu'au <span class="text-slate-600 normal-case">—
+                  optionnel</span></label>
+              <input id="available-to" type="date" class="form-field w-full px-4 py-3 text-sm" />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label mb-3">Jours disponibles *</label>
+            <div class="flex flex-wrap gap-2" id="days-grid">
+              <button type="button" data-day="lun" onclick="toggleDay(this)"
+                class="day-btn border border-slate-300 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:border-emerald-500/50 transition-all">Lun</button>
+              <button type="button" data-day="mar" onclick="toggleDay(this)"
+                class="day-btn border border-slate-300 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:border-emerald-500/50 transition-all">Mar</button>
+              <button type="button" data-day="mer" onclick="toggleDay(this)"
+                class="day-btn border border-slate-300 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:border-emerald-500/50 transition-all">Mer</button>
+              <button type="button" data-day="jeu" onclick="toggleDay(this)"
+                class="day-btn border border-slate-300 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:border-emerald-500/50 transition-all">Jeu</button>
+              <button type="button" data-day="ven" onclick="toggleDay(this)"
+                class="day-btn border border-slate-300 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:border-emerald-500/50 transition-all">Ven</button>
+              <button type="button" data-day="sam" onclick="toggleDay(this)"
+                class="day-btn border border-slate-300 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:border-emerald-500/50 transition-all">Sam</button>
+              <button type="button" data-day="dim" onclick="toggleDay(this)"
+                class="day-btn border border-slate-300 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:border-emerald-500/50 transition-all">Dim</button>
+              <button type="button" onclick="selectAllDays()"
+                class="border border-emerald-500/40 text-emerald-600 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-emerald-500/10 transition-all ml-2">Tous</button>
+            </div>
+          </div>
+
+          <div>
+            <label for="instructions" class="form-label">Instructions de récupération <span
+                class="text-slate-600 normal-case">— optionnel</span></label>
+            <textarea id="instructions" rows="3"
+              placeholder="Ex : Disponible en semaine après 18h, ou le week-end toute la journée. Récupération dans le hall de l'immeuble (code : 1234)."
+              class="form-field w-full px-4 py-3 text-sm resize-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Terms -->
+        <div class="flex items-start gap-3 mb-6 p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+          <input id="terms" type="checkbox" class="mt-0.5 accent-emerald-500 w-4 h-4 shrink-0" />
+          <label for="terms" class="text-xs text-slate-500 cursor-pointer">
+            J'accepte les <a href="#" class="text-emerald-600 underline hover:text-emerald-700">Conditions générales
+              d'utilisation</a> de NeighborTools et je confirme être propriétaire de l'outil mis en location.
+          </label>
+        </div>
+
+        <div class="flex justify-between">
+          <button type="button" onclick="goStep(2)"
+            class="border border-slate-300 text-slate-600 px-6 py-3 rounded-full text-sm font-semibold hover:bg-slate-100 transition-colors">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Retour
+          </button>
+          <button type="submit" id="submit-btn" class="submit-btn flex items-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            Publier mon annonce
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS OVERLAY -->
+  <div id="success-overlay" class="success-overlay">
+    <div class="bg-white border border-emerald-500/30 rounded-3xl p-10 max-w-md mx-4 text-center shadow-xl">
+      <div class="w-16 h-16 rounded-full bg-emerald-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-circle-check text-3xl text-emerald-400"></i>
+      </div>
+      <h2 class="text-xl font-extrabold mb-2 text-slate-800">Annonce publiée ! 🎉</h2>
+      <p class="text-slate-500 text-sm mb-6">Votre outil est maintenant visible par vos voisins dans un rayon de 2 km.
+        Vous recevrez une notification dès qu'une demande de location arrive.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="products.html"
+          class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold transition-colors flex items-center justify-center gap-2">
+          <i class="fa-solid fa-list"></i>Voir les annonces
+        </a>
+        <button onclick="document.getElementById('success-overlay').classList.remove('show')"
+          class="border border-slate-200 text-slate-600 px-6 py-3 rounded-full text-sm font-semibold hover:bg-slate-100 transition-colors">
+          Ajouter un autre outil
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-100 border-t border-slate-200 py-8 mt-10">
+    <div
+      class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>NeighborTools © 2026 • Prototype d'application de partage d'outils entre voisins.</p>
+      <p>Groupe PRS MIA 26.2 • AIT TAYEB Lyes | COODIEN Govindarajen & co.</p>
+    </div>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+
+    // ── Steps navigation ──
+    function goStep(n) {
+      document.getElementById('step-' + currentStep).classList.add('hidden');
+      document.getElementById('step-' + n).classList.remove('hidden');
+
+      // Update indicators
+      for (let i = 1; i <= 3; i++) {
+        const si = document.getElementById('si-' + i);
+        si.classList.remove('active', 'done');
+        if (i < n) si.classList.add('done');
+        else if (i === n) si.classList.add('active');
+      }
+      for (let i = 1; i <= 2; i++) {
+        const sl = document.getElementById('sl-' + i);
+        sl.classList.toggle('done', n > i);
+      }
+
+      currentStep = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Category selection ──
+    function selectCat(el) {
+      document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('selected-cat').value = el.dataset.cat;
+    }
+
+    // ── Photo preview ──
+    function previewPhoto(input) {
+      if (!input.files[0]) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const preview = document.getElementById('photo-preview');
+        document.getElementById('drop-default').style.display = 'none';
+        preview.src = e.target.result;
+        preview.classList.remove('hidden');
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      document.getElementById('drop-zone').classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (!file || !file.type.startsWith('image/')) return;
+      const input = document.getElementById('photo-input');
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      input.files = dt.files;
+      previewPhoto(input);
+    }
+
+    // ── Description char count ──
+    document.getElementById('description').addEventListener('input', function () {
+      document.getElementById('desc-count').textContent = this.value.length + ' / 500';
+    });
+
+    // ── Price preview ──
+    function updatePricePreview() {
+      const price = parseFloat(document.getElementById('price').value);
+      const preview = document.getElementById('price-preview');
+      if (!price || price <= 0) { preview.style.display = 'none'; return; }
+      preview.style.display = 'block';
+      const commission = price * 0.05;
+      const tenant = price * 1.05;
+      const receive = price - 0;
+      document.getElementById('pp-tenant').textContent = tenant.toFixed(2) + ' €';
+      document.getElementById('pp-commission').textContent = '− ' + commission.toFixed(2) + ' €';
+      document.getElementById('pp-receive').textContent = receive.toFixed(2) + ' €';
+    }
+
+    // ── Day buttons ──
+    function toggleDay(btn) {
+      btn.classList.toggle('border-emerald-500');
+      btn.classList.toggle('text-emerald-400');
+      btn.classList.toggle('bg-emerald-500/10');
+      btn.classList.toggle('border-slate-700');
+      btn.classList.toggle('text-slate-600');
+    }
+
+    function selectAllDays() {
+      document.querySelectorAll('.day-btn').forEach(b => {
+        b.classList.add('border-emerald-500', 'text-emerald-400', 'bg-emerald-500/10');
+        b.classList.remove('border-slate-700', 'text-slate-600');
+      });
+    }
+
+    // ── Set today as min date ──
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('available-from').min = today;
+    document.getElementById('available-from').value = today;
+    document.getElementById('available-to').min = today;
+
+    // ── Form submission ──
+    function submitForm(e) {
+      e.preventDefault();
+      if (!document.getElementById('terms').checked) {
+        alert('Veuillez accepter les conditions générales d\'utilisation.');
+        return;
+      }
+      document.getElementById('success-overlay').classList.add('show');
+    }
+  </script>
+</body>
+
+</html>

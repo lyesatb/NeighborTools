@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Louer un produit • NeighborTools</title>
+  <meta name="description"
+    content="Parcourez les outils disponibles près de chez vous — visseuse, perceuse, Kärcher… Louez à un voisin dès aujourd'hui." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    .hero-bg {
+      background: radial-gradient(circle at top left, #34d399, #047857 55%, #022c22 100%);
+    }
+
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(52, 211, 153, 0.15);
+    }
+
+    .badge-distance {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(4, 120, 87, 0.1));
+      border: 1px solid rgba(52, 211, 153, 0.25);
+    }
+
+    .slider-track {
+      background: linear-gradient(to right, #10b981 0%, #10b981 var(--fill), #1e293b var(--fill), #1e293b 100%);
+    }
+
+    input[type=range] {
+      accent-color: #10b981;
+    }
+
+    .filter-btn.active {
+      background: rgba(52, 211, 153, 0.2);
+      border-color: rgba(52, 211, 153, 0.6);
+      color: #6ee7b7;
+    }
+
+    .commission-badge {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(16, 185, 129, 0.06));
+      border: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    .stars {
+      color: #fbbf24;
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-white text-slate-800">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <span class="text-2xl">📍</span>
+        <span class="font-bold text-lg tracking-[0.2em] text-emerald-400">NEIGHBORTOOLS</span>
+      </a>
+      <div class="hidden md:flex gap-8 text-sm text-slate-600">
+        <a href="products.html" class="text-emerald-600 font-semibold">Louer un produit</a>
+        <a href="add-product.html" class="hover:text-emerald-600">Ajouter une annonce</a>
+      </div>
+      <a href="add-product.html"
+        class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors">
+        <i class="fa-solid fa-plus"></i>
+        Publier une annonce
+      </a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="hero-bg py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="uppercase text-xs tracking-[0.3em] text-emerald-200 mb-3">Outils disponibles près de vous</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold leading-tight mb-3">
+        Louez un outil à un <span class="text-emerald-200">voisin de confiance</span>
+      </h1>
+      <p class="text-slate-100/80 text-sm md:text-base max-w-xl">
+        Parcourez les annonces disponibles dans votre quartier. Commission réduite, échange rapide, zéro tracas.
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-10">
+
+    <!-- FILTERS BAR -->
+    <div class="flex flex-col md:flex-row gap-4 mb-8">
+      <!-- Search -->
+      <div class="relative flex-1">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-600 text-sm"></i>
+        <input id="search-input" type="text" placeholder="Rechercher un outil…"
+          class="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-emerald-500 transition-colors"
+          oninput="filterProducts()" />
+      </div>
+
+      <!-- Category filter -->
+      <div class="flex flex-wrap gap-2">
+        <button id="btn-all" onclick="setCategory('all')"
+          class="filter-btn active border border-slate-300 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium transition-all">Tous</button>
+        <button id="btn-jardinage" onclick="setCategory('jardinage')"
+          class="filter-btn border border-slate-300 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:border-emerald-500/50">Jardinage</button>
+        <button id="btn-bricolage" onclick="setCategory('bricolage')"
+          class="filter-btn border border-slate-300 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:border-emerald-500/50">Bricolage</button>
+        <button id="btn-nettoyage" onclick="setCategory('nettoyage')"
+          class="filter-btn border border-slate-300 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:border-emerald-500/50">Nettoyage</button>
+      </div>
+
+      <!-- Distance slider -->
+      <div class="flex items-center gap-3 bg-white border border-slate-300 rounded-xl px-4 py-2.5 min-w-[200px]">
+        <i class="fa-solid fa-location-dot text-emerald-400 text-sm"></i>
+        <div class="flex-1">
+          <div class="flex justify-between text-[11px] text-slate-600 mb-1">
+            <span>Distance max</span>
+            <span id="dist-label" class="text-emerald-400 font-semibold">2 km</span>
+          </div>
+          <input id="dist-slider" type="range" min="100" max="2000" step="100" value="2000"
+            class="w-full h-1.5 rounded-full" oninput="updateDistance(this.value); filterProducts()" />
+        </div>
+      </div>
+    </div>
+
+    <!-- SORT + RESULT COUNT -->
+    <div class="flex items-center justify-between mb-6">
+      <p class="text-sm text-slate-600"><span id="result-count">9</span> annonces disponibles</p>
+      <select id="sort-select" onchange="sortProducts()"
+        class="bg-white border border-slate-300 text-sm text-slate-700 rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500">
+        <option value="distance">Plus proches en premier</option>
+        <option value="price-asc">Prix croissant</option>
+        <option value="price-desc">Prix décroissant</option>
+        <option value="rating">Meilleures notes</option>
+      </select>
+    </div>
+
+    <!-- COMMISSION INFO BANNER -->
+    <div class="commission-badge rounded-2xl p-4 mb-8 flex flex-col md:flex-row items-start md:items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400 shrink-0">
+        <i class="fa-solid fa-percent text-sm"></i>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-emerald-600">Commission ultra-réduite de 5 %</p>
+        <p class="text-xs text-slate-600 mt-0.5">NeighborTools ne prend que 5 % de commission sur chaque location — tout
+          le reste va directement au voisin propriétaire de l'outil.</p>
+      </div>
+      <div
+        class="md:ml-auto text-xs text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1.5 rounded-full whitespace-nowrap">
+        vs 20–30 % ailleurs
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Cards injected by JS -->
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div id="empty-state" class="hidden text-center py-24 text-slate-500">
+      <i class="fa-solid fa-box-open text-4xl mb-4 text-slate-700"></i>
+      <p class="text-lg font-semibold mb-1">Aucun résultat</p>
+      <p class="text-sm">Essayez d'élargir la distance ou de changer de filtre.</p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-100 border-t border-slate-200 py-8 mt-10">
+    <div
+      class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+      <p>NeighborTools © 2026 • Prototype d'application de partage d'outils entre voisins.</p>
+      <p>Groupe PRS MIA 26.2 • AIT TAYEB Lyes | COODIEN Govindarajen & co.</p>
+    </div>
+  </footer>
+
+  <script>
+    const PRODUCTS = [
+      {
+        id: 1, category: "bricolage",
+        name: "Visseuse Bosch sans fil",
+        icon: "fa-screwdriver-wrench",
+        description: "Visseuse 18V avec 2 batteries et un chargeur. Parfaite pour vissage, perçage léger.",
+        price: 5, distance: 200,
+        owner: "Karim B.", rating: 4.8, reviews: 14,
+        available: true, tag: "⚡ Disponible maintenant"
+      },
+      {
+        id: 2, category: "nettoyage",
+        name: "Kärcher K5 haute pression",
+        icon: "fa-water",
+        description: "Nettoyeur HP 145 bar idéal pour terrasses, voitures, façades. Avec lance rotative.",
+        price: 12, distance: 350,
+        owner: "Sophie M.", rating: 4.9, reviews: 22,
+        available: true, tag: "🔥 Très demandé"
+      },
+      {
+        id: 3, category: "bricolage",
+        name: "Perceuse à colonne",
+        icon: "fa-bolt",
+        description: "Perceuse à colonne 500W, profondeur de perçage réglable. Idéale pour le bois et le métal.",
+        price: 8, distance: 480,
+        owner: "Marc D.", rating: 4.6, reviews: 8,
+        available: true, tag: null
+      },
+      {
+        id: 4, category: "jardinage",
+        name: "Tondeuse à gazon électrique",
+        icon: "fa-leaf",
+        description: "Tondeuse filaire 1600W, largeur de coupe 37 cm. Bac collecteur 40 L inclus.",
+        price: 10, distance: 650,
+        owner: "Fatou N.", rating: 4.7, reviews: 11,
+        available: true, tag: null
+      },
+      {
+        id: 5, category: "nettoyage",
+        name: "Nettoyeur vapeur Polti",
+        icon: "fa-wind",
+        description: "Nettoyeur vapeur 3 bars, désinfecte sans produits chimiques. Joints, carrelage, sol.",
+        price: 7, distance: 820,
+        owner: "Alix T.", rating: 4.5, reviews: 6,
+        available: false, tag: "📅 Dispo le 12 avril"
+      },
+      {
+        id: 6, category: "bricolage",
+        name: "Scie sauteuse Makita",
+        icon: "fa-scissors",
+        description: "Scie sauteuse pendulaire 4 vitesses, coupe droite et biseaux jusqu'à 45°. 3 lames incluses.",
+        price: 6, distance: 1100,
+        owner: "Pedro S.", rating: 4.4, reviews: 5,
+        available: true, tag: null
+      },
+      {
+        id: 7, category: "jardinage",
+        name: "Taille-haie à batterie",
+        icon: "fa-seedling",
+        description: "Taille-haie 20V sans fil, lame 50 cm, coupe jusqu'à 18 mm. Léger et maniable.",
+        price: 4, distance: 1250,
+        owner: "Nathalie R.", rating: 4.9, reviews: 19,
+        available: true, tag: "⭐ Top noté"
+      },
+      {
+        id: 8, category: "nettoyage",
+        name: "Aspirateur eau & poussière",
+        icon: "fa-filter",
+        description: "Aspirateur multifonction 30L. Aspire liquides, sciure, gravats. Incontournable en chantier.",
+        price: 9, distance: 1500,
+        owner: "Jean-Luc V.", rating: 4.3, reviews: 7,
+        available: true, tag: null
+      },
+      {
+        id: 9, category: "bricolage",
+        name: "Ponceuse orbitale Ryobi",
+        icon: "fa-circle-notch",
+        description: "Ponceuse 300W, bonne finition sur bois et métal. 5 feuilles abrasives fournies.",
+        price: 5, distance: 1900,
+        owner: "Clara H.", rating: 4.6, reviews: 9,
+        available: true, tag: null
+      },
+    ];
+
+    let currentCategory = 'all';
+    let currentMaxDist = 2000;
+    let currentSearch = '';
+    let currentSort = 'distance';
+
+    function starsHTML(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.5 ? 1 : 0;
+      const empty = 5 - full - half;
+      return (
+        '<i class="fa-solid fa-star"></i>'.repeat(full) +
+        (half ? '<i class="fa-solid fa-star-half-stroke"></i>' : '') +
+        '<i class="fa-regular fa-star"></i>'.repeat(empty)
+      );
+    }
+
+    function distanceLabel(m) {
+      return m < 1000 ? `${m} m` : `${(m / 1000).toFixed(1).replace('.0', '')} km`;
+    }
+
+    function renderCard(p) {
+      const commission = (p.price * 0.05).toFixed(2);
+      const total = (p.price * 1.05).toFixed(2);
+      return `
+      <div class="card-hover bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col shadow-sm" data-id="${p.id}">
+        <!-- Card image area -->
+        <div class="bg-gradient-to-br from-emerald-100 to-slate-100 h-36 flex items-center justify-center relative">
+          <i class="fa-solid ${p.icon} text-5xl text-emerald-500/60"></i>
+          ${p.tag ? `<span class="absolute top-3 left-3 text-[11px] bg-white/90 backdrop-blur border border-slate-200 text-slate-600 px-2 py-0.5 rounded-full">${p.tag}</span>` : ''}
+          <span class="absolute top-3 right-3 text-[11px] badge-distance px-2 py-0.5 rounded-full text-emerald-700 font-medium flex items-center gap-1">
+            <i class="fa-solid fa-location-dot text-[9px]"></i>${distanceLabel(p.distance)}
+          </span>
+        </div>
+
+        <!-- Body -->
+        <div class="p-4 flex flex-col flex-1">
+          <div class="flex items-start justify-between gap-2 mb-1">
+            <h2 class="font-semibold text-sm leading-snug text-slate-800">${p.name}</h2>
+          </div>
+
+          <!-- Stars & reviews -->
+          <div class="flex items-center gap-1.5 mb-2">
+            <span class="stars text-[11px]">${starsHTML(p.rating)}</span>
+            <span class="text-[11px] text-slate-600">${p.rating} (${p.reviews} avis)</span>
+          </div>
+
+          <p class="text-xs text-slate-600 mb-3 flex-1 leading-relaxed">${p.description}</p>
+
+          <!-- Owner -->
+          <div class="flex items-center gap-2 mb-3 pb-3 border-b border-slate-200">
+            <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-[11px] font-bold">${p.owner[0]}</div>
+            <span class="text-xs text-slate-600">${p.owner}</span>
+            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded-full ml-auto">Vérifié ✓</span>
+          </div>
+
+          <!-- Pricing -->
+          <div class="flex items-end justify-between mb-3">
+            <div>
+              <p class="text-[11px] text-slate-500 mb-0.5">Prix / jour</p>
+              <p class="text-xl font-extrabold text-emerald-400">${p.price} €<span class="text-xs font-normal text-slate-500 ml-1">/jour</span></p>
+              <p class="text-[10px] text-slate-500 mt-0.5">+ ${commission} € commission (5 %) → <strong class="text-slate-700">${total} €</strong> total</p>
+            </div>
+            <span class="text-[11px] px-2 py-1 rounded-lg ${p.available ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-slate-100 text-slate-400 border border-slate-200'}">
+              ${p.available ? '● Disponible' : '○ Indisponible'}
+            </span>
+          </div>
+
+          <!-- CTA -->
+          <button
+            onclick="alert('Demande de réservation envoyée pour « ${p.name} » !')"
+            ${!p.available ? 'disabled' : ''}
+            class="w-full ${p.available ? 'bg-emerald-500 hover:bg-emerald-400 text-white cursor-pointer' : 'bg-slate-100 text-slate-400 cursor-not-allowed'} py-2.5 rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+          >
+            <i class="fa-solid fa-calendar-check text-xs"></i>
+            ${p.available ? 'Demander cet outil' : 'Indisponible'}
+          </button>
+        </div>
+      </div>
+    `;
+    }
+
+    function getFiltered() {
+      return PRODUCTS
+        .filter(p => currentCategory === 'all' || p.category === currentCategory)
+        .filter(p => p.distance <= currentMaxDist)
+        .filter(p => {
+          if (!currentSearch) return true;
+          const q = currentSearch.toLowerCase();
+          return p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
+        });
+    }
+
+    function getSorted(arr) {
+      return [...arr].sort((a, b) => {
+        if (currentSort === 'distance') return a.distance - b.distance;
+        if (currentSort === 'price-asc') return a.price - b.price;
+        if (currentSort === 'price-desc') return b.price - a.price;
+        if (currentSort === 'rating') return b.rating - a.rating;
+      });
+    }
+
+    function render() {
+      const filtered = getSorted(getFiltered());
+      const grid = document.getElementById('product-grid');
+      const empty = document.getElementById('empty-state');
+      const count = document.getElementById('result-count');
+      count.textContent = filtered.length;
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+      } else {
+        empty.classList.add('hidden');
+        grid.innerHTML = filtered.map(renderCard).join('');
+      }
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-' + cat).classList.add('active');
+      render();
+    }
+
+    function filterProducts() {
+      currentSearch = document.getElementById('search-input').value;
+      render();
+    }
+
+    function sortProducts() {
+      currentSort = document.getElementById('sort-select').value;
+      render();
+    }
+
+    function updateDistance(val) {
+      currentMaxDist = parseInt(val);
+      document.getElementById('dist-label').textContent = val >= 1000 ? (val / 1000).toFixed(1).replace('.0', '') + ' km' : val + ' m';
+    }
+
+    render();
+  </script>
+</body>
+
+</html>

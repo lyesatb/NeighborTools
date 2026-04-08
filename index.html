@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,26 +8,33 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    .hero-bg { background: radial-gradient(circle at top left, #34d399, #047857 55%, #022c22 100%); }
-    .phone { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.35); }
+    .hero-bg {
+      background: radial-gradient(circle at top left, #34d399, #16916e 55%, #ffffff 100%);
+    }
+
+    .phone {
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.35);
+    }
   </style>
 </head>
-<body class="font-sans bg-slate-950 text-slate-50">
+
+<body class="font-sans bg-white text-slate-800">
 
   <!-- NAVBAR -->
-  <nav class="bg-slate-950/80 backdrop-blur border-b border-slate-800 sticky top-0 z-50">
+  <nav class="bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <span class="text-2xl">📍</span>
         <span class="font-bold text-lg tracking-[0.2em] text-emerald-400">NEIGHBORTOOLS</span>
       </div>
-      <div class="hidden md:flex gap-8 text-sm text-slate-200">
-        <a href="#features" class="hover:text-emerald-400">Fonctionnalités</a>
-        <a href="#how" class="hover:text-emerald-400">Comment ça marche</a>
-        <a href="#screens" class="hover:text-emerald-400">Aperçu</a>
-        <a href="#faq" class="hover:text-emerald-400">FAQ</a>
+      <div class="hidden md:flex gap-8 text-sm text-slate-600">
+        <a href="#features" class="hover:text-emerald-600">Fonctionnalités</a>
+        <a href="#how" class="hover:text-emerald-600">Comment ça marche</a>
+        <a href="products.html" class="hover:text-emerald-600">Louer un produit</a>
+        <a href="add-product.html" class="hover:text-emerald-600">Ajouter une annonce</a>
       </div>
-      <a href="#download" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+      <a href="#download"
+        class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
         <i class="fa-solid fa-mobile-screen-button"></i>
         Accéder à la démo
       </a>
@@ -47,17 +55,22 @@
           nettoyeur haute pression, visseuse, perceuse, nettoyeur vapeur… sans achat, sans stockage.
         </p>
         <ul class="space-y-2 text-sm text-slate-100/80 mb-6">
-          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Zéro achat inutile pour un usage ponctuel</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Proximité : des voisins à moins de 500 m</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Système de confiance et avis entre voisins</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Zéro achat
+            inutile pour un usage ponctuel</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Proximité : des
+            voisins à moins de 500 m</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Système de
+            confiance et avis entre voisins</li>
         </ul>
         <div class="flex flex-wrap gap-3">
-          <a href="#download" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+          <a href="products.html"
+            class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
             <i class="fa-solid fa-qrcode"></i>
-            Ouvrir la démo web
+            Louer un produit
           </a>
-          <a href="#how" class="border border-emerald-400/60 text-emerald-100 px-6 py-3 rounded-full text-sm font-semibold hover:bg-emerald-400/10">
-            Voir comment ça marche
+          <a href="add-product.html"
+            class="border border-emerald-400/60 text-emerald-100 px-6 py-3 rounded-full text-sm font-semibold hover:bg-emerald-400/10">
+            Ajouter une annonce
           </a>
         </div>
         <p class="mt-4 text-xs text-emerald-100/80">
@@ -74,10 +87,11 @@
             </div>
             <div class="bg-gradient-to-br from-emerald-500/20 to-slate-900 rounded-2xl p-4 text-xs text-slate-100">
               <p class="font-semibold mb-1">Trouve un outil près de chez toi</p>
-              <p class="text-[11px] text-slate-200/80 mb-3">Entre ton adresse et découvre les outils disponibles dans un rayon de 500 m.</p>
+              <p class="text-[11px] text-slate-600/80 mb-3">Entre ton adresse et découvre les outils disponibles dans un
+                rayon de 500 m.</p>
               <div class="bg-slate-900/70 rounded-xl p-2 flex items-center gap-2">
                 <i class="fa-solid fa-location-dot text-emerald-400"></i>
-                <span class="text-[11px] text-slate-200/80">Clichy-sous-Bois • 8 outils disponibles</span>
+                <span class="text-[11px] text-slate-600/80">Clichy-sous-Bois • 8 outils disponibles</span>
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2 text-[11px]">
@@ -96,7 +110,8 @@
                 <p class="text-[10px] text-emerald-300">Assurance incluse</p>
               </div>
             </div>
-            <button class="mt-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold py-2 rounded-xl">
+            <button
+              class="mt-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold py-2 rounded-xl">
               Se connecter / Créer un compte
             </button>
           </div>
@@ -106,41 +121,42 @@
   </header>
 
   <!-- FEATURES -->
-  <section id="features" class="py-16 bg-slate-950">
+  <section id="features" class="py-16 bg-slate-50">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold mb-8">Ce que permet l’application NeighborTools</h2>
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-slate-800">Ce que permet l'application NeighborTools</h2>
       <div class="grid md:grid-cols-3 gap-6 text-sm">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div class="flex items-center gap-3 mb-3">
-            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-600">
               <i class="fa-solid fa-magnifying-glass-location"></i>
             </div>
-            <p class="font-semibold">Trouver un outil près de chez soi</p>
+            <p class="font-semibold text-slate-800">Trouver un outil près de chez soi</p>
           </div>
-          <p class="text-slate-300/90">
-            Recherche par adresse ou géolocalisation, filtre par type d’outil, prix, distance et disponibilité.
+          <p class="text-slate-500">
+            Recherche par adresse ou géolocalisation, filtre par type d'outil, prix, distance et disponibilité.
           </p>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div class="flex items-center gap-3 mb-3">
-            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-600">
               <i class="fa-solid fa-handshake"></i>
             </div>
-            <p class="font-semibold">Réserver en quelques clics</p>
+            <p class="font-semibold text-slate-800">Réserver en quelques clics</p>
           </div>
-          <p class="text-slate-300/90">
-            Demande de réservation, validation par le voisin, messagerie intégrée pour fixer l’heure et le lieu d’échange.
+          <p class="text-slate-500">
+            Demande de réservation, validation par le voisin, messagerie intégrée pour fixer l'heure et le lieu
+            d'échange.
           </p>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div class="flex items-center gap-3 mb-3">
-            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-600">
               <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <p class="font-semibold">Confiance & sécurité</p>
+            <p class="font-semibold text-slate-800">Confiance & sécurité</p>
           </div>
-          <p class="text-slate-300/90">
-            Profils vérifiés, système d’avis, historique des prêts, et possibilité d’intégrer une assurance casse/vol.
+          <p class="text-slate-500">
+            Profils vérifiés, système d'avis, historique des prêts, et possibilité d'intégrer une assurance casse/vol.
           </p>
         </div>
       </div>
@@ -148,60 +164,64 @@
   </section>
 
   <!-- HOW IT WORKS -->
-  <section id="how" class="py-16 bg-slate-950 border-t border-slate-800">
+  <section id="how" class="py-16 bg-white border-t border-slate-200">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold mb-8">Comment ça marche ?</h2>
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-slate-800">Comment ça marche ?</h2>
       <div class="grid md:grid-cols-4 gap-6 text-sm">
-        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
-          <p class="text-xs text-slate-400 mb-1">Étape 1</p>
-          <p class="font-semibold mb-2">Créer ton compte</p>
-          <p class="text-slate-300/90">Inscris-toi avec ton email et ton adresse. Tu peux aussi ajouter les outils que tu possèdes.</p>
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+          <p class="text-xs text-emerald-600 font-semibold mb-1">Étape 1</p>
+          <p class="font-semibold mb-2 text-slate-800">Créer ton compte</p>
+          <p class="text-slate-500">Inscris-toi avec ton email et ton adresse. Tu peux aussi ajouter les outils que
+            tu possèdes.</p>
         </div>
-        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
-          <p class="text-xs text-slate-400 mb-1">Étape 2</p>
-          <p class="font-semibold mb-2">Chercher un outil</p>
-          <p class="text-slate-300/90">Choisis le type d’outil, la date et la distance maximale. L’app te propose les voisins disponibles.</p>
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+          <p class="text-xs text-emerald-600 font-semibold mb-1">Étape 2</p>
+          <p class="font-semibold mb-2 text-slate-800">Chercher un outil</p>
+          <p class="text-slate-500">Choisis le type d'outil, la date et la distance maximale. L'app te propose les
+            voisins disponibles.</p>
         </div>
-        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
-          <p class="text-xs text-slate-400 mb-1">Étape 3</p>
-          <p class="font-semibold mb-2">Réserver & échanger</p>
-          <p class="text-slate-300/90">Tu envoies une demande, le voisin accepte, vous fixez un point de rencontre sécurisé.</p>
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+          <p class="text-xs text-emerald-600 font-semibold mb-1">Étape 3</p>
+          <p class="font-semibold mb-2 text-slate-800">Réserver & échanger</p>
+          <p class="text-slate-500">Tu envoies une demande, le voisin accepte, vous fixez un point de rencontre
+            sécurisé.</p>
         </div>
-        <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
-          <p class="text-xs text-slate-400 mb-1">Étape 4</p>
-          <p class="font-semibold mb-2">Noter & recommencer</p>
-          <p class="text-slate-300/90">Après le prêt, chacun laisse un avis. Plus tu prêtes et empruntes, plus ta confiance augmente.</p>
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+          <p class="text-xs text-emerald-600 font-semibold mb-1">Étape 4</p>
+          <p class="font-semibold mb-2 text-slate-800">Noter & recommencer</p>
+          <p class="text-slate-500">Après le prêt, chacun laisse un avis. Plus tu prêtes et empruntes, plus ta
+            confiance augmente.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- SCREENS / APERÇU -->
-  <section id="screens" class="py-16 bg-slate-950">
+  <section id="screens" class="py-16 bg-slate-50">
     <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-center justify-between mb  -8">
-        <h2 class="text-2xl md:text-3xl font-bold">Aperçu de l’interface</h2>
-        <p class="text-xs text-slate-400 hidden md:block">Prototype non définitif – maquettes en cours d’itération.</p>
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Aperçu de l'interface</h2>
+        <p class="text-xs text-slate-600 hidden md:block">Prototype non définitif – maquettes en cours d'itération.</p>
       </div>
       <div class="mt-8 grid md:grid-cols-3 gap-6 text-sm">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
-          <p class="font-semibold mb-2">Accueil</p>
-          <p class="text-slate-300/90 mb-3">Carte du quartier, liste des outils disponibles, filtres rapides.</p>
-          <div class="h-40 rounded-xl bg-gradient-to-br from-emerald-500/10 to-slate-900 flex items-center justify-center text-slate-400 text-xs">
+        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+          <p class="font-semibold mb-2 text-slate-800">Accueil</p>
+          <p class="text-slate-500 mb-3">Carte du quartier, liste des outils disponibles, filtres rapides.</p>
+          <div class="h-40 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 text-xs">
             Capture écran “Accueil”
           </div>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
-          <p class="font-semibold mb-2">Fiche outil</p>
-          <p class="text-slate-300/90 mb-3">Photos, description, prix, distance, avis, bouton “Demander cet outil”.</p>
-          <div class="h-40 rounded-xl bg-gradient-to-br from-emerald-500/10 to-slate-900 flex items-center justify-center text-slate-400 text-xs">
+        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+          <p class="font-semibold mb-2 text-slate-800">Fiche outil</p>
+          <p class="text-slate-500 mb-3">Photos, description, prix, distance, avis, bouton “Demander cet outil”.</p>
+          <div class="h-40 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 text-xs">
             Capture écran “Fiche outil”
           </div>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
-          <p class="font-semibold mb-2">Profil & historique</p>
-          <p class="text-slate-300/90 mb-3">Outils prêtés, empruntés, notes reçues, niveau de confiance.</p>
-          <div class="h-40 rounded-xl bg-gradient-to-br from-emerald-500/10 to-slate-900 flex items-center justify-center text-slate-400 text-xs">
+        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+          <p class="font-semibold mb-2 text-slate-800">Profil & historique</p>
+          <p class="text-slate-500 mb-3">Outils prêtés, empruntés, notes reçues, niveau de confiance.</p>
+          <div class="h-40 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 text-xs">
             Capture écran “Profil”
           </div>
         </div>
@@ -210,70 +230,82 @@
   </section>
 
   <!-- DOWNLOAD / DEMO -->
-  <section id="download" class="py-16 bg-slate-950 border-t border-slate-800">
+  <section id="download" class="py-16 bg-white border-t border-slate-200">
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="text-2xl md:text-3xl font-bold mb-4">Tester la démo NeighborTools</h2>
-        <p class="text-slate-300/90 text-sm mb-4">
-          Cette version est un prototype web statique destiné à présenter le concept, les écrans clés et le parcours utilisateur.
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-800">Tester la démo NeighborTools</h2>
+        <p class="text-slate-500 text-sm mb-4">
+          Cette version est un prototype web statique destiné à présenter le concept, les écrans clés et le parcours
+          utilisateur.
           Elle peut être utilisée en support de présentation, pour des tests utilisateurs ou dans un dossier de projet.
         </p>
-        <ul class="text-sm text-slate-200 space-y-2 mb-6">
-          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-400"></i> Démo cliquable (parcours simplifié)</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-400"></i> Compatible desktop & mobile</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-400"></i> Facile à héberger (Vercel, Netlify, GitHub Pages…)</li>
+        <ul class="text-sm text-slate-600 space-y-2 mb-6">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-500"></i> Démo cliquable
+            (parcours simplifié)</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-500"></i> Compatible desktop
+            & mobile</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-emerald-500"></i> Facile à héberger
+            (Vercel, Netlify, GitHub Pages…)</li>
         </ul>
         <div class="flex flex-wrap gap-3">
-          <a href="#" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+          <a href="#"
+            class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
             <i class="fa-solid fa-play"></i>
             Lancer la démo
           </a>
-          <a href="#" class="border border-slate-600 text-slate-100 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+          <a href="#"
+            class="border border-slate-300 text-slate-700 px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 hover:bg-slate-100">
             <i class="fa-brands fa-github"></i>
             Voir le code source
           </a>
         </div>
       </div>
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-sm">
-        <p class="font-semibold mb-3">Techniquement, c’est quoi ?</p>
-        <ul class="space-y-2 text-slate-300/90">
-          <li><span class="font-semibold text-emerald-300">•</span> Site statique HTML + TailwindCSS</li>
-          <li><span class="font-semibold text-emerald-300">•</span> Facilement intégrable dans un futur front React / Next.js</li>
-          <li><span class="font-semibold text-emerald-300">•</span> Structure pensée pour une future API (auth, recherche, réservation)</li>
-          <li><span class="font-semibold text-emerald-300">•</span> Idéal pour démontrer l’UX avant de développer le back-end</li>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-sm">
+        <p class="font-semibold mb-3 text-slate-800">Techniquement, c'est quoi ?</p>
+        <ul class="space-y-2 text-slate-500">
+          <li><span class="font-semibold text-emerald-600">•</span> Site statique HTML + TailwindCSS</li>
+          <li><span class="font-semibold text-emerald-600">•</span> Facilement intégrable dans un futur front React /
+            Next.js</li>
+          <li><span class="font-semibold text-emerald-600">•</span> Structure pensée pour une future API (auth,
+            recherche, réservation)</li>
+          <li><span class="font-semibold text-emerald-600">•</span> Idéal pour démontrer l'UX avant de développer le
+            back-end</li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="py-16 bg-slate-950">
+  <section id="faq" class="py-16 bg-slate-50">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold mb-8">Questions fréquentes</h2>
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-slate-800">Questions fréquentes</h2>
       <div class="grid md:grid-cols-2 gap-6 text-sm">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <p class="font-semibold mb-2">Est-ce une vraie application fonctionnelle ?</p>
-          <p class="text-slate-300/90">
-            Cette version est un prototype statique. Elle sert à présenter le concept, le design et le parcours utilisateur.
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="font-semibold mb-2 text-slate-800">Est-ce une vraie application fonctionnelle ?</p>
+          <p class="text-slate-500">
+            Cette version est un prototype statique. Elle sert à présenter le concept, le design et le parcours
+            utilisateur.
             Une version complète nécessitera un back-end (API, base de données, authentification, paiements, etc.).
           </p>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <p class="font-semibold mb-2">Comment l’héberger ?</p>
-          <p class="text-slate-300/90">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="font-semibold mb-2 text-slate-800">Comment l'héberger ?</p>
+          <p class="text-slate-500">
             Le site peut être déployé très facilement sur Vercel, Netlify, GitHub Pages ou tout hébergeur statique.
           </p>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <p class="font-semibold mb-2">Peut-on l’utiliser dans un dossier de projet / portfolio ?</p>
-          <p class="text-slate-300/90">
-            Oui, il est conçu pour ça : démontrer une idée claire, un parcours utilisateur cohérent et une vision produit.
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="font-semibold mb-2 text-slate-800">Peut-on l'utiliser dans un dossier de projet / portfolio ?</p>
+          <p class="text-slate-500">
+            Oui, il est conçu pour ça : démontrer une idée claire, un parcours utilisateur cohérent et une vision
+            produit.
           </p>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <p class="font-semibold mb-2">Quelles sont les prochaines étapes possibles ?</p>
-          <p class="text-slate-300/90">
-            Connexion à une API, gestion des comptes, géolocalisation réelle, paiement sécurisé, assurance intégrée, scoring de confiance, etc.
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="font-semibold mb-2 text-slate-800">Quelles sont les prochaines étapes possibles ?</p>
+          <p class="text-slate-500">
+            Connexion à une API, gestion des comptes, géolocalisation réelle, paiement sécurisé, assurance intégrée,
+            scoring de confiance, etc.
           </p>
         </div>
       </div>
@@ -281,12 +313,14 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-950 border-t border-slate-800 py-8">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+  <footer class="bg-slate-100 border-t border-slate-200 py-8">
+    <div
+      class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
       <p>NeighborTools © 2026 • Prototype d’application de partage d’outils entre voisins.</p>
-      <p>Groupe PRS MIA 26.2 • AIT TAYEB Lyes & co.</p>
+      <p>Groupe PRS MIA 26.2 • AIT TAYEB Lyes | COODIEN Govindarajen & co.</p>
     </div>
   </footer>
 
 </body>
+
 </html>
