@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeighborTools • Un voisin. Un outil. Zéro achat.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    .hero-bg { background: linear-gradient(135deg, #10b981 0%, #065f46 100%); }
+    .phone { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">📍</span>
+        <h1 class="text-2xl font-bold text-emerald-600">NEIGHBORTOOLS</h1>
+      </div>
+      <div class="hidden md:flex gap-8 text-gray-700">
+        <a href="#pitch" class="hover:text-emerald-600">Pitch</a>
+        <a href="#etude" class="hover:text-emerald-600">Étude marché</a>
+        <a href="#empathie" class="hover:text-emerald-600">Carte d’empathie</a>
+        <a href="#concurrents" class="hover:text-emerald-600">Concurrents</a>
+        <a href="#equipe" class="hover:text-emerald-600">Équipe</a>
+      </div>
+      <a href="#demo" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-2xl font-medium flex items-center gap-2">
+        <i class="fa-solid fa-download"></i>
+        Télécharger l’app (démo)
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+          Un voisin.<br>Un outil.<br><span class="text-emerald-200">Zéro achat.</span>
+        </h2>
+        <p class="text-xl mb-8 text-emerald-100">
+          Ton garage devient aussi grand que ton quartier.<br>
+          Emprunte un Kärcher, une visseuse ou un nettoyeur vapeur en 3 clics.
+        </p>
+        <div class="flex gap-4">
+          <a href="#demo" class="bg-white text-emerald-700 px-8 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 hover:scale-105 transition">
+            <i class="fa-solid fa-qrcode"></i>
+            Voir la démo
+          </a>
+          <a href="#" class="border-2 border-white px-8 py-4 rounded-3xl font-semibold text-lg hover:bg-white hover:text-emerald-700 transition">
+            En savoir plus
+          </a>
+        </div>
+        <p class="mt-8 text-emerald-200 text-sm">Déjà validé par 17 personnes • 76,5 % prêts à louer</p>
+      </div>
+
+      <!-- Maquette de l'application -->
+      <div class="flex justify-center">
+        <img src="maquette.png" alt="Maquette NeighborTools" class="phone w-full max-w-[320px] rounded-3xl">
+      </div>
+    </div>
+  </header>
+
+  <!-- ELEVATOR PITCH -->
+  <section id="pitch" class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-10">Elevator Pitch</h2>
+      <div class="bg-white p-10 rounded-3xl shadow-xl">
+        <p class="text-xl leading-relaxed text-gray-700">
+          Et si votre garage était aussi grand que votre quartier ?<br><br>
+          Pourquoi remplir vos placards — et vider votre portefeuille — pour un objet qui ne sert que quelques jours dans l’année ?<br><br>
+          <strong>NeighborTools</strong> transforme votre voisinage en un espace de partage simple et pratique.<br>
+          Besoin d’un nettoyeur vapeur ? D’une visseuse ? Empruntez-le à un voisin en quelques clics.
+        </p>
+        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Économies</strong> immédiates</div>
+          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Pratique</strong> & rapide</div>
+          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Sécurisé</strong> & assuré</div>
+          <div class="bg-emerald-50 p-6 rounded-2xl"><strong class="block text-emerald-600">Écologique</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTE D'EMPATHIE -->
+  <section id="empathie" class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-10">Carte de l’empathie</h2>
+      <div class="bg-gradient-to-br from-pink-100 via-yellow-100 to-cyan-100 p-8 rounded-3xl shadow-inner text-center">
+        <p class="italic text-xl mb-6">"J’en ai marre d’acheter des outils que j’utilise 2 fois par an…"</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-left text-sm">
+          <div><strong>Ce qu’il pense :</strong> “C’est du gaspillage…”</div>
+          <div><strong>Ce qu’il ressent :</strong> Frustration + peur de la casse</div>
+          <div><strong>Ce qu’il dit :</strong> “Y a-t-il un moyen simple et pas cher ?”</div>
+          <div><strong>Ce qu’il fait :</strong> Va chez Leroy Merlin ou sur Leboncoin</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉTUDE DE MARCHÉ -->
+  <section id="etude" class="py-16 bg-emerald-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">Étude de marché (17 réponses)</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <p class="text-emerald-600 font-semibold">72 % utilisent du matériel spécialisé moins d’1 fois par mois</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <p class="text-emerald-600 font-semibold">76,5 % veulent surtout un Kärcher ou une visseuse</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <p class="text-emerald-600 font-semibold">76,5 % sont prêts à louer via une plateforme sécurisée</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <p class="text-emerald-600 font-semibold">88,2 % rassurés par une assurance casse/vol incluse</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <p class="text-emerald-600 font-semibold">70,6 % intéressés par un abonnement Premium</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCURRENTS -->
+  <section id="concurrents" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">Nous vs Concurrents</h2>
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-emerald-700 text-white">
+            <th class="p-4">Plateforme</th>
+            <th class="p-4">Distance</th>
+            <th class="p-4">Prix/jour</th>
+            <th class="p-4">Assurance</th>
+            <th class="p-4">Avantage NeighborTools</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+          <tr class="border-b"><td class="p-4 font-bold">NeighborTools</td><td class="p-4">500 m</td><td class="p-4">10-15 €</td><td class="p-4 text-emerald-600">Incluse</td><td class="p-4 text-emerald-600">✅ Proximité + Particuliers</td></tr>
+          <tr class="border-b"><td class="p-4">Leroy Merlin</td><td class="p-4">6-10 km</td><td class="p-4">30-70 €</td><td class="p-4">Non</td><td class="p-4">Trop loin + horaires</td></tr>
+          <tr class="border-b"><td class="p-4">Toolzy</td><td class="p-4">25 km</td><td class="p-4">15-40 €</td><td class="p-4">Non</td><td class="p-4">Outils pro seulement</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ÉQUIPE -->
+  <section id="equipe" class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-10">L’équipe Groupe PRS MIA 26.2</h2>
+      <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-lg">
+        <div>COODIEN Govindarajen</div>
+        <div>AIT TAYEB Lyes</div>
+        <div>DZIRI Rayane</div>
+        <div>LEKOJARA Abdelrafik</div>
+        <div>HAMMA Sofiane</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CTA -->
+  <footer class="bg-emerald-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-2xl mb-6">Prêt à transformer ton quartier ?</p>
+      <a href="#" class="inline-block bg-white text-emerald-700 px-10 py-5 rounded-3xl text-xl font-semibold hover:scale-110 transition">
+        Lancer l’app (démo) →
+      </a>
+      <p class="mt-12 text-emerald-300 text-sm">NeighborTools © 2026 • Un projet PRS MIA 26.2</p>
+    </div>
+  </footer>
+
+</body>
+</html>
